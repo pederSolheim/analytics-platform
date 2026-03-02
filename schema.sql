@@ -20,3 +20,9 @@ CREATE TABLE transactions (
     amount          NUMERIC(10, 2) NOT NULL,
     created_at      TIMESTAMP DEFAULT NOW()
 );
+
+CREATE TABLE daily_revenue (
+    date        DATE PRIMARY KEY,
+    total_revenue NUMERIC(12, 2) NOT NULL,
+    transaction_count INT NOT NULL
+);
