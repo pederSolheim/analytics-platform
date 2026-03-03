@@ -1,4 +1,17 @@
 # transform.py
+
+# Performance measurements (EXPLAIN ANALYZE on daily revenue aggregation query):
+# 2M rows  → 250ms  (seq scan)
+# 5M rows  → 654ms  (seq scan)
+# 10M rows → 1208ms (seq scan)
+#
+# Index added: CREATE INDEX idx_transactions_created_at ON transactions(created_at)
+# Postgres still uses seq scan for full-table aggregations — correct behavior.
+# Cache warming effect observed: cold ~700ms, warm ~250ms on same 2M dataset.
+# Scaling is roughly linear with row count.
+
+
+
 import os
 import logging
 from datetime import datetime
