@@ -1,5 +1,5 @@
-from api.database import get_connection
-from api.logger import get_logger
+from database import get_connection
+from logger import get_logger
 
 logger = get_logger("queries")
 
@@ -37,14 +37,8 @@ def get_revenue_by_category():
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute("""
-                SELECT
-                    p.category,
-                    COUNT(t.transaction_id)          AS transaction_count,
-                    ROUND(SUM(t.amount)::numeric, 2) AS total_revenue,
-                    ROUND(AVG(t.amount)::numeric, 2) AS avg_transaction_value
-                FROM transactions t
-                JOIN products p ON t.product_id = p.product_id
-                GROUP BY p.category
+                SELECT category, total_revenue, order_count, avg_order_value, last_updated
+                FROM analytics_category_revenue
                 ORDER BY total_revenue DESC
             """)
             rows = cur.fetchall()
@@ -57,15 +51,9 @@ def get_top_users(limit=10):
     with get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute("""
-                SELECT
-                    u.user_id,
-                    u.email,
-                    COUNT(t.transaction_id)          AS transaction_count,
-                    ROUND(SUM(t.amount)::numeric, 2) AS total_spent,
-                    ROUND(AVG(t.amount)::numeric, 2) AS avg_order_value
-                FROM users u
-                JOIN transactions t ON t.user_id = u.user_id
-                GROUP BY u.user_id, u.email
+                SELECT user_id, total_spent, order_count, avg_order_value,
+                       first_purchase, last_purchase
+                FROM analytics_user_ltv
                 ORDER BY total_spent DESC
                 LIMIT %s
             """, (limit,))

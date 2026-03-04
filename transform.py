@@ -79,33 +79,102 @@ def aggregate_daily_revenue(conn):
         log.info(f"Done. Rows written: {len(rows)}")
         return len(rows)
 
+def aggregate_category_revenue(conn):
+    """
+    Aggregate revenue by product category.
+    Idempotent: uses ON CONFLICT DO UPDATE (upsert by category).
+    """
+    with conn.cursor() as cur:
+        log.info("Aggregating category revenue...")
+
+        cur.execute("""
+            INSERT INTO analytics_category_revenue
+                (category, total_revenue, order_count, avg_order_value, last_updated)
+            SELECT
+                p.category,
+                SUM(t.amount),
+                COUNT(t.transaction_id),
+                AVG(t.amount),
+                NOW()
+            FROM transactions t
+            JOIN products p ON t.product_id = p.product_id
+            GROUP BY p.category
+            ON CONFLICT (category) DO UPDATE SET
+                total_revenue   = EXCLUDED.total_revenue,
+                order_count     = EXCLUDED.order_count,
+                avg_order_value = EXCLUDED.avg_order_value,
+                last_updated    = EXCLUDED.last_updated;
+        """)
+
+        row_count = cur.rowcount
+        log.info(f"Done. Rows affected: {row_count}")
+        return row_count
+
+def aggregate_user_ltv(conn):
+    """
+    Aggregate user lifetime value from transactions.
+    Idempotent: uses ON CONFLICT DO UPDATE (upsert by user_id).
+    """
+    with conn.cursor() as cur:
+        log.info("Aggregating user LTV...")
+
+        cur.execute("""
+            INSERT INTO analytics_user_ltv
+                (user_id, total_spent, order_count, avg_order_value,
+                 first_purchase, last_purchase, last_updated)
+            SELECT
+                user_id,
+                SUM(amount),
+                COUNT(transaction_id),
+                AVG(amount),
+                MIN(created_at),
+                MAX(created_at),
+                NOW()
+            FROM transactions
+            GROUP BY user_id
+            ON CONFLICT (user_id) DO UPDATE SET
+                total_spent     = EXCLUDED.total_spent,
+                order_count     = EXCLUDED.order_count,
+                avg_order_value = EXCLUDED.avg_order_value,
+                first_purchase  = EXCLUDED.first_purchase,
+                last_purchase   = EXCLUDED.last_purchase,
+                last_updated    = EXCLUDED.last_updated;
+        """)
+
+        row_count = cur.rowcount
+        log.info(f"Done. Rows affected: {row_count}")
+        return row_count
+
+def run_transform(label, fn):
+    """Run a single transform function with its own connection, commit, and error handling."""
+    log.info(f"Starting: {label}")
+    start = datetime.now()
+    conn = get_connection()
+    conn.autocommit = False
+    try:
+        rows = fn(conn)
+        conn.commit()
+        elapsed = (datetime.now() - start).total_seconds()
+        log.info(f"Done: {label} — {rows} rows in {elapsed:.2f}s")
+        return rows
+    except Exception as e:
+        conn.rollback()
+        log.error(f"Failed: {label} — rolled back. Error: {e}")
+        raise
+    finally:
+        conn.close()
+
 
 def run():
     log.info("=== Transform job started ===")
     start = datetime.now()
 
-    try:
-        conn = get_connection()
-        conn.autocommit = False  # explicit transaction control
-
-        try:
-            rows_written = aggregate_daily_revenue(conn)
-            conn.commit()
-            log.info(f"Transaction committed. {rows_written} rows upserted.")
-        except Exception as e:
-            conn.rollback()
-            log.error(f"Transform failed, rolled back. Error: {e}")
-            raise
-        finally:
-            conn.close()
-
-    except Exception as e:
-        log.critical(f"Job failed: {e}")
-        raise
+    run_transform("daily revenue",    aggregate_daily_revenue)
+    run_transform("category revenue", aggregate_category_revenue)
+    run_transform("user LTV",         aggregate_user_ltv)
 
     elapsed = (datetime.now() - start).total_seconds()
     log.info(f"=== Transform job finished in {elapsed:.2f}s ===")
-
 
 if __name__ == "__main__":
     run()

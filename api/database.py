@@ -2,13 +2,13 @@ import os
 import psycopg2
 from psycopg2 import pool
 from contextlib import contextmanager
-from api.logger import get_logger
+from logger import get_logger
 
 logger = get_logger("database")
 
 DB_CONFIG = {
     "dbname": os.getenv("DB_NAME", "analytics"),
-    "user": os.getenv("DB_USER", "postgres"),
+    "user": os.getenv("DB_USER", "pedersolheim"),
     "password": os.getenv("DB_PASSWORD", ""),
     "host": os.getenv("DB_HOST", "localhost"),
     "port": os.getenv("DB_PORT", "5432"),

@@ -2,8 +2,9 @@ import time
 import uuid
 from fastapi import FastAPI, Request, HTTPException, Query
 from fastapi.responses import JSONResponse
-from api import queries
-from api.logger import get_logger
+import queries
+from logger import get_logger
+
 
 logger = get_logger("api")
 

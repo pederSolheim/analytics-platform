@@ -26,3 +26,21 @@ CREATE TABLE daily_revenue (
     total_revenue NUMERIC(12, 2) NOT NULL,
     transaction_count INT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS analytics_category_revenue (
+    category        VARCHAR(100) PRIMARY KEY,
+    total_revenue   NUMERIC(15,2) NOT NULL,
+    order_count     INTEGER NOT NULL,
+    avg_order_value NUMERIC(10,2) NOT NULL,
+    last_updated    TIMESTAMP DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS analytics_user_ltv (
+    user_id         INTEGER PRIMARY KEY,
+    total_spent     NUMERIC(15,2) NOT NULL,
+    order_count     INTEGER NOT NULL,
+    avg_order_value NUMERIC(10,2) NOT NULL,
+    first_purchase  TIMESTAMP,
+    last_purchase   TIMESTAMP,
+    last_updated    TIMESTAMP DEFAULT NOW()
+);
