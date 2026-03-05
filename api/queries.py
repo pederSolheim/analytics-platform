@@ -1,3 +1,4 @@
+#queries.py
 from database import get_connection
 from logger import get_logger
 

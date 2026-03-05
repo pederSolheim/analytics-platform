@@ -11,6 +11,24 @@
 # Scaling is roughly linear with row count.
 
 
+# Performance measurements (EXPLAIN ANALYZE on daily revenue aggregation query):
+# 2M rows  → 250ms  (seq scan)
+# 5M rows  → 654ms  (seq scan)
+# 10M rows → 1208ms (seq scan)
+#
+# Index added: CREATE INDEX idx_transactions_created_at ON transactions(created_at)
+# Postgres still uses seq scan for full-table aggregations — correct behavior.
+# Cache warming effect observed: cold ~700ms, warm ~250ms on same 2M dataset.
+# Scaling is roughly linear with row count.
+#
+# Pre-aggregation applied to API layer (Phase 4):
+# /revenue/category: 1779ms → 1.4ms  (moved JOIN to transform, reads analytics_category_revenue)
+# /users/top:        2541ms → 3.7ms  (moved aggregation to transform, reads analytics_user_ltv)
+#
+# Index added: CREATE INDEX idx_user_ltv_total_spent ON analytics_user_ltv (total_spent DESC)
+# /users/top: 3.7ms → 0.09ms execution time (EXPLAIN ANALYZE)
+# Changed from Seq Scan (42,000 rows) to Index Scan (10 rows).
+
 
 import os
 import logging
