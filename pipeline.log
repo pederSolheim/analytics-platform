@@ -1,0 +1,97 @@
+{"time": "2026-03-05 07:27:46,378", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Kill connection mid-query"}
+{"time": "2026-03-05 07:28:53,238", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Kill connection mid-query"}
+{"time": "2026-03-05 07:28:53,250", "level": "INFO", "module": "failures", "msg": "Connection opened. Closing it before query..."}
+{"time": "2026-03-05 07:28:53,250", "level": "WARNING", "module": "failures", "msg": "Caught expected InterfaceError: cursor already closed"}
+{"time": "2026-03-05 07:28:53,250", "level": "INFO", "module": "failures", "msg": "System handled dead connection correctly ✓"}
+{"time": "2026-03-05 07:28:53,250", "level": "INFO", "module": "failures", "msg": "Testing pool still healthy after dead connection..."}
+{"time": "2026-03-05 07:28:53,255", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-05 07:28:54,637", "level": "INFO", "module": "failures", "msg": "Pool query succeeded. Row count: 10020000"}
+{"time": "2026-03-05 07:28:54,638", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Corrupt input data"}
+{"time": "2026-03-05 07:28:54,638", "level": "INFO", "module": "failures", "msg": "Attempting to insert 3 rows (1 corrupt)..."}
+{"time": "2026-03-05 07:28:54,639", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: column "transaction_date" of relation "transactions" does not exist
+LINE 2: ...ons (transaction_id, user_id, product_id, amount, transactio...
+                                                             ^
+"}
+{"time": "2026-03-05 07:32:36,018", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Kill connection mid-query"}
+{"time": "2026-03-05 07:32:36,030", "level": "INFO", "module": "failures", "msg": "Connection opened. Closing it before query..."}
+{"time": "2026-03-05 07:32:36,030", "level": "WARNING", "module": "failures", "msg": "Caught expected InterfaceError: cursor already closed"}
+{"time": "2026-03-05 07:32:36,030", "level": "INFO", "module": "failures", "msg": "System handled dead connection correctly ✓"}
+{"time": "2026-03-05 07:32:36,030", "level": "INFO", "module": "failures", "msg": "Testing pool still healthy after dead connection..."}
+{"time": "2026-03-05 07:32:36,035", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-05 07:32:37,363", "level": "INFO", "module": "failures", "msg": "Pool query succeeded. Row count: 10020000"}
+{"time": "2026-03-05 07:32:37,363", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Corrupt input data"}
+{"time": "2026-03-05 07:32:37,363", "level": "INFO", "module": "failures", "msg": "Attempting to insert 3 rows (1 corrupt)..."}
+{"time": "2026-03-05 07:32:37,364", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: null value in column "quantity" of relation "transactions" violates not-null constraint
+DETAIL:  Failing row contains (9999901, 1, 1, null, 50.00, 2024-01-15 00:00:00).
+"}
+{"time": "2026-03-05 07:48:08,882", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Kill connection mid-query"}
+{"time": "2026-03-05 07:48:08,894", "level": "INFO", "module": "failures", "msg": "Connection opened. Closing it before query..."}
+{"time": "2026-03-05 07:48:08,894", "level": "WARNING", "module": "failures", "msg": "Caught expected InterfaceError: cursor already closed"}
+{"time": "2026-03-05 07:48:08,894", "level": "INFO", "module": "failures", "msg": "System handled dead connection correctly ✓"}
+{"time": "2026-03-05 07:48:08,894", "level": "INFO", "module": "failures", "msg": "Testing pool still healthy after dead connection..."}
+{"time": "2026-03-05 07:48:08,897", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-05 07:48:10,240", "level": "INFO", "module": "failures", "msg": "Pool query succeeded. Row count: 10020000"}
+{"time": "2026-03-05 07:48:10,240", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Corrupt input data"}
+{"time": "2026-03-05 07:48:10,240", "level": "INFO", "module": "failures", "msg": "Attempting to insert 3 rows (1 corrupt)..."}
+{"time": "2026-03-05 07:48:10,241", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: column "transaction_date" of relation "transactions" does not exist
+LINE 2: ...action_id, user_id, product_id, quantity, amount, transactio...
+                                                             ^
+"}
+{"time": "2026-03-05 07:48:40,709", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Kill connection mid-query"}
+{"time": "2026-03-05 07:48:40,720", "level": "INFO", "module": "failures", "msg": "Connection opened. Closing it before query..."}
+{"time": "2026-03-05 07:48:40,720", "level": "WARNING", "module": "failures", "msg": "Caught expected InterfaceError: cursor already closed"}
+{"time": "2026-03-05 07:48:40,720", "level": "INFO", "module": "failures", "msg": "System handled dead connection correctly ✓"}
+{"time": "2026-03-05 07:48:40,720", "level": "INFO", "module": "failures", "msg": "Testing pool still healthy after dead connection..."}
+{"time": "2026-03-05 07:48:40,723", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-05 07:48:42,148", "level": "INFO", "module": "failures", "msg": "Pool query succeeded. Row count: 10020000"}
+{"time": "2026-03-05 07:48:42,148", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Corrupt input data"}
+{"time": "2026-03-05 07:48:42,149", "level": "INFO", "module": "failures", "msg": "Attempting to insert 3 rows (1 corrupt)..."}
+{"time": "2026-03-05 07:48:42,150", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: Invalid amount -99.99 for transaction 9999902. Negative prices not allowed."}
+{"time": "2026-03-05 07:48:42,150", "level": "WARNING", "module": "failures", "msg": "Corrupt data rejected: Invalid amount -99.99 for transaction 9999902. Negative prices not allowed."}
+{"time": "2026-03-05 07:48:42,150", "level": "INFO", "module": "failures", "msg": "Transaction rolled back. No rows inserted. ✓"}
+{"time": "2026-03-05 07:49:58,460", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Corrupt input data"}
+{"time": "2026-03-05 07:49:58,460", "level": "INFO", "module": "failures", "msg": "Attempting to insert 3 rows (1 corrupt)..."}
+{"time": "2026-03-05 07:49:58,471", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-05 07:49:58,478", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: Invalid amount -99.99 for transaction 9999902. Negative prices not allowed."}
+{"time": "2026-03-05 07:49:58,478", "level": "WARNING", "module": "failures", "msg": "Corrupt data rejected: Invalid amount -99.99 for transaction 9999902. Negative prices not allowed."}
+{"time": "2026-03-05 07:49:58,478", "level": "INFO", "module": "failures", "msg": "Transaction rolled back. No rows inserted. ✓"}
+{"time": "2026-03-05 07:49:58,482", "level": "INFO", "module": "failures", "msg": "Verified: 0 corrupt rows in DB ✓"}
+{"time": "2026-03-05 07:50:28,819", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Kill connection mid-query"}
+{"time": "2026-03-05 07:50:28,832", "level": "INFO", "module": "failures", "msg": "Connection opened. Closing it before query..."}
+{"time": "2026-03-05 07:50:28,832", "level": "WARNING", "module": "failures", "msg": "Caught expected InterfaceError: cursor already closed"}
+{"time": "2026-03-05 07:50:28,832", "level": "INFO", "module": "failures", "msg": "System handled dead connection correctly ✓"}
+{"time": "2026-03-05 07:50:28,832", "level": "INFO", "module": "failures", "msg": "Testing pool still healthy after dead connection..."}
+{"time": "2026-03-05 07:50:28,837", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-05 07:50:29,709", "level": "INFO", "module": "failures", "msg": "Pool query succeeded. Row count: 9999900"}
+{"time": "2026-03-05 07:50:29,709", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Corrupt input data"}
+{"time": "2026-03-05 07:50:29,709", "level": "INFO", "module": "failures", "msg": "Attempting to insert 3 rows (1 corrupt)..."}
+{"time": "2026-03-05 07:50:29,710", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: Invalid amount -99.99 for transaction 9999902. Negative prices not allowed."}
+{"time": "2026-03-05 07:50:29,710", "level": "WARNING", "module": "failures", "msg": "Corrupt data rejected: Invalid amount -99.99 for transaction 9999902. Negative prices not allowed."}
+{"time": "2026-03-05 07:50:29,711", "level": "INFO", "module": "failures", "msg": "Transaction rolled back. No rows inserted. ✓"}
+{"time": "2026-03-05 07:50:29,711", "level": "INFO", "module": "failures", "msg": "Verified: 0 corrupt rows in DB ✓"}
+{"time": "2026-03-05 07:50:29,711", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Partial write simulation"}
+{"time": "2026-03-05 07:50:29,712", "level": "INFO", "module": "failures", "msg": "Writing to daily_revenue..."}
+{"time": "2026-03-05 07:50:29,712", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: column "date" of relation "daily_revenue" does not exist
+LINE 2:                 INSERT INTO daily_revenue (date, total_reven...
+                                                   ^
+"}
+{"time": "2026-03-05 08:03:51,697", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Kill connection mid-query"}
+{"time": "2026-03-05 08:03:51,710", "level": "INFO", "module": "failures", "msg": "Connection opened. Closing it before query..."}
+{"time": "2026-03-05 08:03:51,710", "level": "WARNING", "module": "failures", "msg": "Caught expected InterfaceError: cursor already closed"}
+{"time": "2026-03-05 08:03:51,710", "level": "INFO", "module": "failures", "msg": "System handled dead connection correctly ✓"}
+{"time": "2026-03-05 08:03:51,710", "level": "INFO", "module": "failures", "msg": "Testing pool still healthy after dead connection..."}
+{"time": "2026-03-05 08:03:51,714", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-05 08:03:53,048", "level": "INFO", "module": "failures", "msg": "Pool query succeeded. Row count: 9999900"}
+{"time": "2026-03-05 08:03:53,049", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Corrupt input data"}
+{"time": "2026-03-05 08:03:53,049", "level": "INFO", "module": "failures", "msg": "Attempting to insert 3 rows (1 corrupt)..."}
+{"time": "2026-03-05 08:03:53,050", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: Invalid amount -99.99 for transaction 9999902. Negative prices not allowed."}
+{"time": "2026-03-05 08:03:53,050", "level": "WARNING", "module": "failures", "msg": "Corrupt data rejected: Invalid amount -99.99 for transaction 9999902. Negative prices not allowed."}
+{"time": "2026-03-05 08:03:53,050", "level": "INFO", "module": "failures", "msg": "Transaction rolled back. No rows inserted. ✓"}
+{"time": "2026-03-05 08:03:53,050", "level": "INFO", "module": "failures", "msg": "Verified: 0 corrupt rows in DB ✓"}
+{"time": "2026-03-05 08:03:53,051", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Partial write simulation"}
+{"time": "2026-03-05 08:03:53,051", "level": "INFO", "module": "failures", "msg": "Writing to daily_revenue..."}
+{"time": "2026-03-05 08:03:53,052", "level": "INFO", "module": "failures", "msg": "daily_revenue write complete. Injecting crash..."}
+{"time": "2026-03-05 08:03:53,052", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: Simulated process crash after first write"}
+{"time": "2026-03-05 08:03:53,052", "level": "WARNING", "module": "failures", "msg": "Caught injected failure: Simulated process crash after first write"}
+{"time": "2026-03-05 08:03:53,052", "level": "INFO", "module": "failures", "msg": "Rollback should have fired. Checking DB state..."}
+{"time": "2026-03-05 08:03:53,053", "level": "INFO", "module": "failures", "msg": "Verified: partial write rolled back. Both tables consistent. ✓"}
