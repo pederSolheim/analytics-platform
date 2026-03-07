@@ -14,6 +14,10 @@ import functools
 import psycopg2
 import psycopg2.pool
 from contextlib import contextmanager
+import os 
+from dotenv import load_dotenv
+load_dotenv()
+
 
 # ── Structured logger ────────────────────────────────────────────────────────
 logging.basicConfig(
@@ -28,11 +32,11 @@ log = logging.getLogger(__name__)
 
 # ── Config ────────────────────────────────────────────────────────────────────
 DB_CONFIG = {
-    "host": "localhost",
-    "port": 5432,
-    "dbname": "analytics",
-    "user": "pedersolheim",   # ← your actual system username
-    "password": "",            # ← probably no password if using local Postgres
+    "host":            os.getenv("DB_HOST", "localhost"),
+    "port":            int(os.getenv("DB_PORT", "5432")),
+    "dbname":          os.getenv("DB_NAME", "analytics"),
+    "user":            os.getenv("DB_USER"),       # no default
+    "password":        os.getenv("DB_PASSWORD"),   # no default
     "connect_timeout": 5,
 }
 

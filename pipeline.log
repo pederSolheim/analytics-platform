@@ -95,3 +95,23 @@ LINE 2:                 INSERT INTO daily_revenue (date, total_reven...
 {"time": "2026-03-05 08:03:53,052", "level": "WARNING", "module": "failures", "msg": "Caught injected failure: Simulated process crash after first write"}
 {"time": "2026-03-05 08:03:53,052", "level": "INFO", "module": "failures", "msg": "Rollback should have fired. Checking DB state..."}
 {"time": "2026-03-05 08:03:53,053", "level": "INFO", "module": "failures", "msg": "Verified: partial write rolled back. Both tables consistent. ✓"}
+{"time": "2026-03-07 12:36:29,815", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Kill connection mid-query"}
+{"time": "2026-03-07 12:36:29,896", "level": "INFO", "module": "failures", "msg": "Connection opened. Closing it before query..."}
+{"time": "2026-03-07 12:36:29,896", "level": "WARNING", "module": "failures", "msg": "Caught expected InterfaceError: cursor already closed"}
+{"time": "2026-03-07 12:36:29,896", "level": "INFO", "module": "failures", "msg": "System handled dead connection correctly ✓"}
+{"time": "2026-03-07 12:36:29,896", "level": "INFO", "module": "failures", "msg": "Testing pool still healthy after dead connection..."}
+{"time": "2026-03-07 12:36:29,900", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-07 12:36:31,455", "level": "INFO", "module": "failures", "msg": "Pool query succeeded. Row count: 9999900"}
+{"time": "2026-03-07 12:36:31,455", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Corrupt input data"}
+{"time": "2026-03-07 12:36:31,455", "level": "INFO", "module": "failures", "msg": "Attempting to insert 3 rows (1 corrupt)..."}
+{"time": "2026-03-07 12:36:31,459", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: Invalid amount -99.99 for transaction 9999902. Negative prices not allowed."}
+{"time": "2026-03-07 12:36:31,459", "level": "WARNING", "module": "failures", "msg": "Corrupt data rejected: Invalid amount -99.99 for transaction 9999902. Negative prices not allowed."}
+{"time": "2026-03-07 12:36:31,459", "level": "INFO", "module": "failures", "msg": "Transaction rolled back. No rows inserted. ✓"}
+{"time": "2026-03-07 12:36:31,461", "level": "INFO", "module": "failures", "msg": "Verified: 0 corrupt rows in DB ✓"}
+{"time": "2026-03-07 12:36:31,461", "level": "INFO", "module": "failures", "msg": "[SCENARIO] Partial write simulation"}
+{"time": "2026-03-07 12:36:31,461", "level": "INFO", "module": "failures", "msg": "Writing to daily_revenue..."}
+{"time": "2026-03-07 12:36:31,462", "level": "INFO", "module": "failures", "msg": "daily_revenue write complete. Injecting crash..."}
+{"time": "2026-03-07 12:36:31,462", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: Simulated process crash after first write"}
+{"time": "2026-03-07 12:36:31,462", "level": "WARNING", "module": "failures", "msg": "Caught injected failure: Simulated process crash after first write"}
+{"time": "2026-03-07 12:36:31,463", "level": "INFO", "module": "failures", "msg": "Rollback should have fired. Checking DB state..."}
+{"time": "2026-03-07 12:36:31,463", "level": "INFO", "module": "failures", "msg": "Verified: partial write rolled back. Both tables consistent. ✓"}
