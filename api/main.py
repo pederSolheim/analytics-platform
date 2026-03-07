@@ -4,8 +4,8 @@ main.py — FastAPI service with structured logging and error handling.
 New in Phase 5:
 - Every request logged: method, path, status, duration
 - DB errors return 503 (not 500) — signals "retry later"
-- Validation errors return 422 with clean messages
-- No raw exceptions leak to the client
+- Unhandled exceptions caught and logged, never leak to client
+- Connection pool initialised at startup via lifespan
 """
 
 import time
@@ -21,6 +21,7 @@ from db import fetch_all, get_pool, log
 from queries import (
     DAILY_REVENUE,
     CATEGORY_REVENUE,
+    CATEGORY_REVENUE_TOTAL,
     TOP_USERS,
     HEALTH_CHECK,
 )
@@ -41,7 +42,7 @@ app = FastAPI(title="Analytics API", version="2.0.0", lifespan=lifespan)
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     t0 = time.perf_counter()
-    response = await call_next(request)
+    response = await call_next(request) #concurrency
     elapsed_ms = (time.perf_counter() - t0) * 1000
     log.info(
         f'"method": "{request.method}", '
@@ -103,14 +104,8 @@ def revenue_category(
         if date:
             rows = fetch_all(CATEGORY_REVENUE + " WHERE date = %s ORDER BY revenue DESC", (date,))
         else:
-            rows = fetch_all(
-                """
-                SELECT category, ROUND(SUM(revenue)::numeric, 2) AS revenue, SUM(transaction_count) AS transaction_count
-                FROM category_revenue
-                GROUP BY category
-                ORDER BY revenue DESC
-                """
-            )
+            rows = fetch_all(CATEGORY_REVENUE_TOTAL)
+
         return {"count": len(rows), "data": rows}
     except psycopg2.Error as exc:
         log.error(f'"DB error in /revenue/category: {exc}"')

@@ -5,6 +5,13 @@ from logger import get_logger
 logger = get_logger("queries")
 
 
+CATEGORY_REVENUE_TOTAL = """
+    SELECT category, ROUND(SUM(revenue)::numeric, 2) AS revenue, SUM(transaction_count) AS transaction_count
+    FROM category_revenue
+    GROUP BY category
+    ORDER BY revenue DESC
+"""
+
 def get_daily_revenue(start_date=None, end_date=None, limit=30):
     with get_connection() as conn:
         with conn.cursor() as cur:
