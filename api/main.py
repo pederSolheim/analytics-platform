@@ -18,14 +18,12 @@ from fastapi.responses import JSONResponse
 import psycopg2
 
 from db import fetch_all, get_pool, log
-from queries import (
+from api.queries import (
     DAILY_REVENUE,
-    CATEGORY_REVENUE,
     CATEGORY_REVENUE_TOTAL,
     TOP_USERS,
     HEALTH_CHECK,
 )
-
 
 # ── App setup ─────────────────────────────────────────────────────────────────
 @asynccontextmanager
@@ -78,17 +76,13 @@ def revenue_daily(
     start: str = Query(None, description="Start date YYYY-MM-DD"),
     end:   str = Query(None, description="End date YYYY-MM-DD"),
 ):
-    """
-    Daily revenue totals.
-    Optional: ?start=2024-01-01&end=2024-03-31
-    """
     try:
         if start and end:
-            rows = fetch_all(DAILY_REVENUE + " WHERE date BETWEEN %s AND %s ORDER BY date", (start, end))
+            rows = fetch_all(DAILY_REVENUE + " WHERE revenue_date BETWEEN %s AND %s ORDER BY revenue_date", (start, end))
         elif start:
-            rows = fetch_all(DAILY_REVENUE + " WHERE date >= %s ORDER BY date", (start,))
+            rows = fetch_all(DAILY_REVENUE + " WHERE revenue_date >= %s ORDER BY revenue_date", (start,))
         else:
-            rows = fetch_all(DAILY_REVENUE + " ORDER BY date DESC LIMIT 90")
+            rows = fetch_all(DAILY_REVENUE + " ORDER BY revenue_date DESC LIMIT 90")
         return {"count": len(rows), "data": rows}
     except psycopg2.Error as exc:
         log.error(f'"DB error in /revenue/daily: {exc}"')
@@ -96,16 +90,10 @@ def revenue_daily(
 
 
 @app.get("/revenue/category")
-def revenue_category(
-    date: str = Query(None, description="Filter by date YYYY-MM-DD"),
-):
+def revenue_category():
     """Revenue breakdown by product category."""
     try:
-        if date:
-            rows = fetch_all(CATEGORY_REVENUE + " WHERE date = %s ORDER BY revenue DESC", (date,))
-        else:
-            rows = fetch_all(CATEGORY_REVENUE_TOTAL)
-
+        rows = fetch_all(CATEGORY_REVENUE_TOTAL)
         return {"count": len(rows), "data": rows}
     except psycopg2.Error as exc:
         log.error(f'"DB error in /revenue/category: {exc}"')

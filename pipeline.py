@@ -142,7 +142,7 @@ JOBS = {
     "ltv":      job_user_ltv,
 }
 
-if __name__ == "__main__":
+if __name__ == "__main__": 
     args = sys.argv[1:]
     inject = "--fail" in args
     args = [a for a in args if a != "--fail"]
@@ -153,7 +153,7 @@ if __name__ == "__main__":
         if name not in JOBS:
             print(f"Unknown job: {name}. Available: {', '.join(JOBS)}")
             sys.exit(1)
-
+ 
     total_start = time.perf_counter()
     errors = []
 

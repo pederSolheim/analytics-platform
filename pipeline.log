@@ -115,3 +115,37 @@ LINE 2:                 INSERT INTO daily_revenue (date, total_reven...
 {"time": "2026-03-07 12:36:31,462", "level": "WARNING", "module": "failures", "msg": "Caught injected failure: Simulated process crash after first write"}
 {"time": "2026-03-07 12:36:31,463", "level": "INFO", "module": "failures", "msg": "Rollback should have fired. Checking DB state..."}
 {"time": "2026-03-07 12:36:31,463", "level": "INFO", "module": "failures", "msg": "Verified: partial write rolled back. Both tables consistent. ✓"}
+{"time": "2026-03-08 09:37:27,843", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
+{"time": "2026-03-08 09:37:27,937", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 09:39:23,945", "level": "INFO", "module": "main", "msg": "API shutting down."}
+{"time": "2026-03-08 09:40:26,988", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
+{"time": "2026-03-08 09:40:27,002", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 09:42:37,325", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/metrics/health", "status": 200, "duration_ms": 1490.6}
+{"time": "2026-03-08 09:42:37,352", "level": "ERROR", "module": "main", "msg": "DB error in /revenue/daily: column "date" does not exist
+LINE 8:  ORDER BY date DESC LIMIT 90
+                  ^
+"}
+{"time": "2026-03-08 09:42:37,352", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/daily", "status": 503, "duration_ms": 5.1}
+{"time": "2026-03-08 09:42:37,372", "level": "ERROR", "module": "main", "msg": "DB error in /revenue/category: relation "category_revenue" does not exist
+LINE 3:     FROM category_revenue
+                 ^
+"}
+{"time": "2026-03-08 09:42:37,373", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/category", "status": 503, "duration_ms": 5.4}
+{"time": "2026-03-08 09:42:37,391", "level": "ERROR", "module": "main", "msg": "DB error in /users/top: relation "user_ltv" does not exist
+LINE 3:     FROM user_ltv
+                 ^
+"}
+{"time": "2026-03-08 09:42:37,391", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/users/top", "status": 503, "duration_ms": 1.7}
+{"time": "2026-03-08 09:44:44,247", "level": "INFO", "module": "main", "msg": "API shutting down."}
+{"time": "2026-03-08 09:47:50,800", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
+{"time": "2026-03-08 09:47:50,818", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 09:48:16,989", "level": "INFO", "module": "main", "msg": "API shutting down."}
+{"time": "2026-03-08 09:48:17,234", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
+{"time": "2026-03-08 09:48:17,245", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 09:48:54,820", "level": "INFO", "module": "main", "msg": "API shutting down."}
+{"time": "2026-03-08 09:48:55,079", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
+{"time": "2026-03-08 09:48:55,093", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 09:49:08,099", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/metrics/health", "status": 200, "duration_ms": 1382.8}
+{"time": "2026-03-08 09:49:08,120", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/daily", "status": 200, "duration_ms": 4.7}
+{"time": "2026-03-08 09:49:08,139", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/category", "status": 200, "duration_ms": 2.9}
+{"time": "2026-03-08 09:49:08,158", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/users/top", "status": 200, "duration_ms": 5.7}

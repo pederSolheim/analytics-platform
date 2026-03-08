@@ -127,3 +127,6 @@ def fetch_all(sql: str, params: tuple = ()) -> list[dict]:
             return [dict(zip(cols, row)) for row in cur.fetchall()]
     finally:
         pool.putconn(conn)
+
+
+    
