@@ -293,3 +293,7 @@ LINE 3:         date AS revenue_date,
 {"time": "2026-03-08 10:36:08,227", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/daily", "status": 200, "duration_ms": 6.7}
 {"time": "2026-03-08 10:36:08,259", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/category", "status": 200, "duration_ms": 1.7}
 {"time": "2026-03-08 10:36:08,270", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/users/top", "status": 200, "duration_ms": 1.8}
+{"time": "2026-03-08 11:24:17,064", "level": "INFO", "module": "main", "msg": "API shutting down."}
+{"time": "2026-03-08 11:24:17,561", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
+{"time": "2026-03-08 11:24:17,574", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 13:02:27,003", "level": "INFO", "module": "main", "msg": "API shutting down."}

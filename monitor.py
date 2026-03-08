@@ -53,3 +53,13 @@ def _append_csv(entry: dict):
 def get_snapshot() -> dict:
     with _lock:
         return dict(_store)
+    
+
+def flush_to_csv(path: str) -> str:
+    import csv, os
+    snapshot = get_snapshot()
+    os.makedirs(os.path.dirname(path) if os.path.dirname(path) else ".", exist_ok=True)
+    with open(path, "a", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow([snapshot])
+    return path

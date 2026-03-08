@@ -1,0 +1,110 @@
+2026-03-08 13:07:42,325 [INFO] scheduler — Scheduler starting up
+2026-03-08 13:07:42,325 [INFO] scheduler —   Interval : every 2 minutes
+2026-03-08 13:07:42,325 [INFO] scheduler —   Rows/run : 500
+2026-03-08 13:07:42,325 [INFO] scheduler —   Log file : logs/scheduler.log
+2026-03-08 13:07:42,325 [INFO] scheduler —   DB DSN   : postgresql://localhost:5432/analytics
+2026-03-08 13:07:42,326 [INFO] apscheduler.scheduler — Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-03-08 13:07:42,326 [INFO] scheduler — First run in 2 minutes. Press Ctrl+C to stop.
+2026-03-08 13:07:42,326 [INFO] scheduler — Running pipeline immediately on startup...
+2026-03-08 13:07:42,326 [INFO] scheduler — ============================================================
+2026-03-08 13:07:42,326 [INFO] scheduler — PIPELINE TICK — 2026-03-08T07:37:42.326238
+2026-03-08 13:07:42,326 [INFO] scheduler — ============================================================
+2026-03-08 13:07:42,326 [INFO] scheduler — JOB START — data_generation (rows=500)
+2026-03-08 13:07:42,326 [WARNING] scheduler — data_generation skipped: generate.py not found or missing insert_incremental()
+2026-03-08 13:07:42,326 [INFO] scheduler — JOB START — transformations
+2026-03-08 13:07:42,340 [WARNING] scheduler — transformations skipped: pipeline.py not found or missing run_all()
+2026-03-08 13:07:42,340 [INFO] scheduler — JOB START — monitor_snapshot
+2026-03-08 13:07:42,340 [WARNING] scheduler — monitor_snapshot skipped: monitor.py not found or missing flush_to_csv()
+2026-03-08 13:07:42,340 [INFO] scheduler — JOB START — health_check
+2026-03-08 13:07:43,685 [INFO] scheduler — JOB OK — health_check | transactions=9999900 | 1.34s
+2026-03-08 13:07:43,685 [INFO] scheduler — PIPELINE COMPLETE — 2026-03-08T07:37:42.326238
+2026-03-08 13:07:43,687 [INFO] apscheduler.scheduler — Added job "Full analytics pipeline" to job store "default"
+2026-03-08 13:07:43,687 [INFO] apscheduler.scheduler — Scheduler started
+2026-03-08 13:08:29,616 [INFO] scheduler — Scheduler stopped by user.
+2026-03-08 13:12:49,106 [INFO] scheduler — Scheduler starting up
+2026-03-08 13:12:49,106 [INFO] scheduler —   Interval : every 2 minutes
+2026-03-08 13:12:49,106 [INFO] scheduler —   Rows/run : 500
+2026-03-08 13:12:49,106 [INFO] scheduler —   Log file : logs/scheduler.log
+2026-03-08 13:12:49,106 [INFO] scheduler —   DB DSN   : postgresql://localhost:5432/analytics
+2026-03-08 13:12:49,107 [INFO] apscheduler.scheduler — Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-03-08 13:12:49,107 [INFO] scheduler — First run in 2 minutes. Press Ctrl+C to stop.
+2026-03-08 13:12:49,107 [INFO] scheduler — Running pipeline immediately on startup...
+2026-03-08 13:12:49,107 [INFO] scheduler — ============================================================
+2026-03-08 13:12:49,107 [INFO] scheduler — PIPELINE TICK — 2026-03-08T07:42:49.107330
+2026-03-08 13:12:49,107 [INFO] scheduler — ============================================================
+2026-03-08 13:12:49,107 [INFO] scheduler — JOB START — data_generation (rows=500)
+2026-03-08 13:12:49,107 [WARNING] scheduler — data_generation skipped: generate.py not found or missing insert_incremental()
+2026-03-08 13:12:49,107 [INFO] scheduler — JOB START — transformations
+2026-03-08 13:12:49,130 [INFO] db — "Connection pool created"
+2026-03-08 13:12:50,362 [INFO] db — "daily_revenue: refreshing 367 dates"
+2026-03-08 13:12:51,281 [INFO] db — "daily_revenue: inserted 367 rows"
+2026-03-08 13:12:51,282 [INFO] db — "Transaction committed"
+2026-03-08 13:12:51,283 [INFO] db — {'job': 'daily_revenue', 'duration_s': 2.163, 'rows': 1}
+2026-03-08 13:12:52,468 [INFO] db — "analytics_category_revenue: inserted 5 rows"
+2026-03-08 13:12:52,472 [INFO] db — "Transaction committed"
+2026-03-08 13:12:52,472 [INFO] db — {'job': 'category_revenue', 'duration_s': 1.189, 'rows': 1}
+2026-03-08 13:12:54,194 [INFO] db — "analytics_user_ltv: inserted 42000 rows"
+2026-03-08 13:12:54,194 [INFO] db — "Transaction committed"
+2026-03-08 13:12:54,195 [INFO] db — {'job': 'analytics_user_ltv', 'duration_s': 1.722, 'rows': 1}
+2026-03-08 13:12:54,195 [INFO] scheduler — JOB OK — transformations | jobs=3 | 5.09s
+2026-03-08 13:12:54,195 [INFO] scheduler —   ↳ daily_revenue                       ok
+2026-03-08 13:12:54,195 [INFO] scheduler —   ↳ category_revenue                    ok
+2026-03-08 13:12:54,195 [INFO] scheduler —   ↳ user_ltv                            ok
+2026-03-08 13:12:54,195 [INFO] scheduler — JOB START — monitor_snapshot
+2026-03-08 13:12:54,195 [INFO] scheduler — JOB OK — monitor_snapshot | path=logs/metrics.csv | 0.00s
+2026-03-08 13:12:54,196 [INFO] scheduler — JOB START — health_check
+2026-03-08 13:12:54,304 [INFO] scheduler — JOB OK — health_check | transactions=9999900 | 0.11s
+2026-03-08 13:12:54,304 [INFO] scheduler — PIPELINE COMPLETE — 2026-03-08T07:42:49.107330
+2026-03-08 13:12:54,306 [INFO] apscheduler.scheduler — Added job "Full analytics pipeline" to job store "default"
+2026-03-08 13:12:54,306 [INFO] apscheduler.scheduler — Scheduler started
+2026-03-08 13:14:01,500 [INFO] scheduler — Scheduler stopped by user.
+2026-03-08 13:15:09,480 [INFO] scheduler — Scheduler starting up
+2026-03-08 13:15:09,480 [INFO] scheduler —   Interval : every 2 minutes
+2026-03-08 13:15:09,480 [INFO] scheduler —   Rows/run : 500
+2026-03-08 13:15:09,480 [INFO] scheduler —   Log file : logs/scheduler.log
+2026-03-08 13:15:09,480 [INFO] scheduler —   DB DSN   : postgresql://localhost:5432/analytics
+2026-03-08 13:15:09,480 [INFO] apscheduler.scheduler — Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-03-08 13:15:09,480 [INFO] scheduler — First run in 2 minutes. Press Ctrl+C to stop.
+2026-03-08 13:15:09,480 [INFO] scheduler — Running pipeline immediately on startup...
+2026-03-08 13:15:09,480 [INFO] scheduler — ============================================================
+2026-03-08 13:15:09,480 [INFO] scheduler — PIPELINE TICK — 2026-03-08T07:45:09.480957
+2026-03-08 13:15:09,480 [INFO] scheduler — ============================================================
+2026-03-08 13:15:09,481 [INFO] scheduler — JOB START — data_generation (rows=500)
+2026-03-08 13:15:46,274 [INFO] scheduler — Scheduler stopped by user.
+2026-03-08 13:23:46,738 [INFO] scheduler — Scheduler starting up
+2026-03-08 13:23:46,738 [INFO] scheduler —   Interval : every 2 minutes
+2026-03-08 13:23:46,738 [INFO] scheduler —   Rows/run : 500
+2026-03-08 13:23:46,738 [INFO] scheduler —   Log file : logs/scheduler.log
+2026-03-08 13:23:46,738 [INFO] scheduler —   DB DSN   : postgresql://localhost:5432/analytics
+2026-03-08 13:23:46,739 [INFO] apscheduler.scheduler — Adding job tentatively -- it will be properly scheduled when the scheduler starts
+2026-03-08 13:23:46,739 [INFO] scheduler — First run in 2 minutes. Press Ctrl+C to stop.
+2026-03-08 13:23:46,739 [INFO] scheduler — Running pipeline immediately on startup...
+2026-03-08 13:23:46,739 [INFO] scheduler — ============================================================
+2026-03-08 13:23:46,739 [INFO] scheduler — PIPELINE TICK — 2026-03-08T07:53:46.739249
+2026-03-08 13:23:46,739 [INFO] scheduler — ============================================================
+2026-03-08 13:23:46,739 [INFO] scheduler — JOB START — data_generation (rows=500)
+2026-03-08 13:23:46,859 [INFO] scheduler — JOB OK — data_generation | rows=500 | 0.12s
+2026-03-08 13:23:46,859 [INFO] scheduler — JOB START — transformations
+2026-03-08 13:23:46,861 [INFO] db — "Connection pool created"
+2026-03-08 13:23:48,154 [INFO] db — "daily_revenue: refreshing 368 dates"
+2026-03-08 13:23:49,148 [INFO] db — "daily_revenue: inserted 368 rows"
+2026-03-08 13:23:49,151 [INFO] db — "Transaction committed"
+2026-03-08 13:23:49,152 [INFO] db — {'job': 'daily_revenue', 'duration_s': 2.292, 'rows': 1}
+2026-03-08 13:23:50,587 [INFO] db — "analytics_category_revenue: inserted 5 rows"
+2026-03-08 13:23:50,588 [INFO] db — "Transaction committed"
+2026-03-08 13:23:50,589 [INFO] db — {'job': 'category_revenue', 'duration_s': 1.436, 'rows': 1}
+2026-03-08 13:23:52,219 [INFO] db — "analytics_user_ltv: inserted 42072 rows"
+2026-03-08 13:23:52,220 [INFO] db — "Transaction committed"
+2026-03-08 13:23:52,220 [INFO] db — {'job': 'analytics_user_ltv', 'duration_s': 1.631, 'rows': 1}
+2026-03-08 13:23:52,221 [INFO] scheduler — JOB OK — transformations | jobs=3 | 5.36s
+2026-03-08 13:23:52,221 [INFO] scheduler —   ↳ daily_revenue                       ok
+2026-03-08 13:23:52,221 [INFO] scheduler —   ↳ category_revenue                    ok
+2026-03-08 13:23:52,221 [INFO] scheduler —   ↳ user_ltv                            ok
+2026-03-08 13:23:52,221 [INFO] scheduler — JOB START — monitor_snapshot
+2026-03-08 13:23:52,221 [INFO] scheduler — JOB OK — monitor_snapshot | path=logs/metrics.csv | 0.00s
+2026-03-08 13:23:52,222 [INFO] scheduler — JOB START — health_check
+2026-03-08 13:23:52,328 [INFO] scheduler — JOB OK — health_check | transactions=10000400 | 0.11s
+2026-03-08 13:23:52,328 [INFO] scheduler — PIPELINE COMPLETE — 2026-03-08T07:53:46.739249
+2026-03-08 13:23:52,330 [INFO] apscheduler.scheduler — Added job "Full analytics pipeline" to job store "default"
+2026-03-08 13:23:52,330 [INFO] apscheduler.scheduler — Scheduler started
+2026-03-08 13:24:45,286 [INFO] scheduler — Scheduler stopped by user.

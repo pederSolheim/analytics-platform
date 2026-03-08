@@ -142,6 +142,18 @@ def job_user_ltv(inject_failure: bool = False):
         return cur.rowcount
 
 
+def run_all(dsn: str = None) -> dict:
+    results = {}
+    for name, fn in [("daily_revenue", job_daily_revenue),
+                     ("category_revenue", job_category_revenue),
+                     ("user_ltv", job_user_ltv)]:
+        try:
+            fn()
+            results[name] = "ok"
+        except Exception as e:
+            results[name] = str(e)
+    return results
+
 # ── Runner ────────────────────────────────────────────────────────────────────
 
 JOBS = {
