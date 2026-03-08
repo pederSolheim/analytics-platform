@@ -149,3 +149,147 @@ LINE 3:     FROM user_ltv
 {"time": "2026-03-08 09:49:08,120", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/daily", "status": 200, "duration_ms": 4.7}
 {"time": "2026-03-08 09:49:08,139", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/category", "status": 200, "duration_ms": 2.9}
 {"time": "2026-03-08 09:49:08,158", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/users/top", "status": 200, "duration_ms": 5.7}
+{"time": "2026-03-08 09:54:49,998", "level": "INFO", "module": "main", "msg": "API shutting down."}
+{"time": "2026-03-08 10:09:12,070", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 10:09:12,072", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: column "transaction_date" does not exist
+LINE 2:             SELECT DISTINCT DATE(transaction_date) AS d
+                                         ^
+"}
+{"time": "2026-03-08 10:09:12,072", "level": "ERROR", "module": "pipeline", "msg": {'job': 'daily_revenue', 'error': 'column "transaction_date" does not exist\nLINE 2:             SELECT DISTINCT DATE(transaction_date) AS d\n                                         ^\n'}}
+{"time": "2026-03-08 10:09:12,073", "level": "INFO", "module": "pipeline", "msg": {'job': 'daily_revenue', 'duration_s': 0.02, 'rows': 0}}
+{"time": "2026-03-08 10:09:12,073", "level": "ERROR", "module": "pipeline", "msg": "Pipeline error in job daily: column "transaction_date" does not exist
+LINE 2:             SELECT DISTINCT DATE(transaction_date) AS d
+                                         ^
+"}
+{"time": "2026-03-08 10:09:12,074", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: relation "category_revenue" does not exist
+LINE 1: DELETE FROM category_revenue
+                    ^
+"}
+{"time": "2026-03-08 10:09:12,074", "level": "ERROR", "module": "pipeline", "msg": {'job': 'category_revenue', 'error': 'relation "category_revenue" does not exist\nLINE 1: DELETE FROM category_revenue\n                    ^\n'}}
+{"time": "2026-03-08 10:09:12,074", "level": "INFO", "module": "pipeline", "msg": {'job': 'category_revenue', 'duration_s': 0.001, 'rows': 0}}
+{"time": "2026-03-08 10:09:12,074", "level": "ERROR", "module": "pipeline", "msg": "Pipeline error in job category: relation "category_revenue" does not exist
+LINE 1: DELETE FROM category_revenue
+                    ^
+"}
+{"time": "2026-03-08 10:09:12,074", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: relation "user_ltv" does not exist
+LINE 1: DELETE FROM user_ltv
+                    ^
+"}
+{"time": "2026-03-08 10:09:12,074", "level": "ERROR", "module": "pipeline", "msg": {'job': 'user_ltv', 'error': 'relation "user_ltv" does not exist\nLINE 1: DELETE FROM user_ltv\n                    ^\n'}}
+{"time": "2026-03-08 10:09:12,074", "level": "INFO", "module": "pipeline", "msg": {'job': 'user_ltv', 'duration_s': 0.0, 'rows': 0}}
+{"time": "2026-03-08 10:09:12,074", "level": "ERROR", "module": "pipeline", "msg": "Pipeline error in job ltv: relation "user_ltv" does not exist
+LINE 1: DELETE FROM user_ltv
+                    ^
+"}
+{"time": "2026-03-08 10:09:12,074", "level": "ERROR", "module": "pipeline", "msg": "Pipeline finished with 3 error(s) in 0.02s"}
+{"time": "2026-03-08 10:09:12,074", "level": "ERROR", "module": "pipeline", "msg": "  daily: column "transaction_date" does not exist
+LINE 2:             SELECT DISTINCT DATE(transaction_date) AS d
+                                         ^
+"}
+{"time": "2026-03-08 10:09:12,074", "level": "ERROR", "module": "pipeline", "msg": "  category: relation "category_revenue" does not exist
+LINE 1: DELETE FROM category_revenue
+                    ^
+"}
+{"time": "2026-03-08 10:09:12,074", "level": "ERROR", "module": "pipeline", "msg": "  ltv: relation "user_ltv" does not exist
+LINE 1: DELETE FROM user_ltv
+                    ^
+"}
+{"time": "2026-03-08 10:19:31,812", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 10:19:31,815", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: column "transaction_date" does not exist
+LINE 2:             SELECT DISTINCT DATE(transaction_date) AS d
+                                         ^
+"}
+{"time": "2026-03-08 10:19:31,815", "level": "ERROR", "module": "pipeline", "msg": {'job': 'daily_revenue', 'error': 'column "transaction_date" does not exist\nLINE 2:             SELECT DISTINCT DATE(transaction_date) AS d\n                                         ^\n'}}
+{"time": "2026-03-08 10:19:31,816", "level": "INFO", "module": "pipeline", "msg": {'job': 'daily_revenue', 'duration_s': 0.018, 'rows': 0}}
+{"time": "2026-03-08 10:19:31,816", "level": "ERROR", "module": "pipeline", "msg": "Pipeline error in job daily: column "transaction_date" does not exist
+LINE 2:             SELECT DISTINCT DATE(transaction_date) AS d
+                                         ^
+"}
+{"time": "2026-03-08 10:19:33,180", "level": "INFO", "module": "pipeline", "msg": "analytics_category_revenue: inserted 5 rows"}
+{"time": "2026-03-08 10:19:33,181", "level": "INFO", "module": "db", "msg": "Transaction committed"}
+{"time": "2026-03-08 10:19:33,182", "level": "INFO", "module": "pipeline", "msg": {'job': 'category_revenue', 'duration_s': 1.366, 'rows': 1}}
+{"time": "2026-03-08 10:19:35,046", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: relation "user_ltv" does not exist
+LINE 1: SELECT COUNT(*) FROM user_ltv
+                             ^
+"}
+{"time": "2026-03-08 10:19:35,046", "level": "ERROR", "module": "pipeline", "msg": {'job': 'user_ltv', 'error': 'relation "user_ltv" does not exist\nLINE 1: SELECT COUNT(*) FROM user_ltv\n                             ^\n'}}
+{"time": "2026-03-08 10:19:35,046", "level": "INFO", "module": "pipeline", "msg": {'job': 'user_ltv', 'duration_s': 1.863, 'rows': 0}}
+{"time": "2026-03-08 10:19:35,046", "level": "ERROR", "module": "pipeline", "msg": "Pipeline error in job ltv: relation "user_ltv" does not exist
+LINE 1: SELECT COUNT(*) FROM user_ltv
+                             ^
+"}
+{"time": "2026-03-08 10:19:35,046", "level": "ERROR", "module": "pipeline", "msg": "Pipeline finished with 2 error(s) in 3.25s"}
+{"time": "2026-03-08 10:19:35,046", "level": "ERROR", "module": "pipeline", "msg": "  daily: column "transaction_date" does not exist
+LINE 2:             SELECT DISTINCT DATE(transaction_date) AS d
+                                         ^
+"}
+{"time": "2026-03-08 10:19:35,046", "level": "ERROR", "module": "pipeline", "msg": "  ltv: relation "user_ltv" does not exist
+LINE 1: SELECT COUNT(*) FROM user_ltv
+                             ^
+"}
+{"time": "2026-03-08 10:26:32,155", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 10:26:33,708", "level": "INFO", "module": "pipeline", "msg": "daily_revenue: refreshing 367 dates"}
+{"time": "2026-03-08 10:26:33,741", "level": "ERROR", "module": "db", "msg": "Transaction rolled back: column "date" of relation "daily_revenue" does not exist
+LINE 2:             INSERT INTO daily_revenue (date, total_revenue, ...
+                                               ^
+"}
+{"time": "2026-03-08 10:26:33,741", "level": "ERROR", "module": "pipeline", "msg": {'job': 'daily_revenue', 'error': 'column "date" of relation "daily_revenue" does not exist\nLINE 2:             INSERT INTO daily_revenue (date, total_revenue, ...\n                                               ^\n'}}
+{"time": "2026-03-08 10:26:33,744", "level": "INFO", "module": "pipeline", "msg": {'job': 'daily_revenue', 'duration_s': 1.602, 'rows': 0}}
+{"time": "2026-03-08 10:26:33,744", "level": "ERROR", "module": "pipeline", "msg": "Pipeline error in job daily: column "date" of relation "daily_revenue" does not exist
+LINE 2:             INSERT INTO daily_revenue (date, total_revenue, ...
+                                               ^
+"}
+{"time": "2026-03-08 10:26:34,914", "level": "INFO", "module": "pipeline", "msg": "analytics_category_revenue: inserted 5 rows"}
+{"time": "2026-03-08 10:26:34,915", "level": "INFO", "module": "db", "msg": "Transaction committed"}
+{"time": "2026-03-08 10:26:34,916", "level": "INFO", "module": "pipeline", "msg": {'job': 'category_revenue', 'duration_s': 1.171, 'rows': 1}}
+{"time": "2026-03-08 10:26:36,587", "level": "INFO", "module": "pipeline", "msg": "analytics_user_ltv: inserted 42000 rows"}
+{"time": "2026-03-08 10:26:36,587", "level": "INFO", "module": "db", "msg": "Transaction committed"}
+{"time": "2026-03-08 10:26:36,588", "level": "INFO", "module": "pipeline", "msg": {'job': 'analytics_user_ltv', 'duration_s': 1.672, 'rows': 1}}
+{"time": "2026-03-08 10:26:36,588", "level": "ERROR", "module": "pipeline", "msg": "Pipeline finished with 1 error(s) in 4.45s"}
+{"time": "2026-03-08 10:26:36,588", "level": "ERROR", "module": "pipeline", "msg": "  daily: column "date" of relation "daily_revenue" does not exist
+LINE 2:             INSERT INTO daily_revenue (date, total_revenue, ...
+                                               ^
+"}
+{"time": "2026-03-08 10:29:46,673", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 10:29:48,156", "level": "INFO", "module": "pipeline", "msg": "daily_revenue: refreshing 367 dates"}
+{"time": "2026-03-08 10:29:49,169", "level": "INFO", "module": "pipeline", "msg": "daily_revenue: inserted 367 rows"}
+{"time": "2026-03-08 10:29:49,170", "level": "INFO", "module": "db", "msg": "Transaction committed"}
+{"time": "2026-03-08 10:29:49,171", "level": "INFO", "module": "pipeline", "msg": {'job': 'daily_revenue', 'duration_s': 2.512, 'rows': 1}}
+{"time": "2026-03-08 10:29:50,441", "level": "INFO", "module": "pipeline", "msg": "analytics_category_revenue: inserted 5 rows"}
+{"time": "2026-03-08 10:29:50,441", "level": "INFO", "module": "db", "msg": "Transaction committed"}
+{"time": "2026-03-08 10:29:50,441", "level": "INFO", "module": "pipeline", "msg": {'job': 'category_revenue', 'duration_s': 1.27, 'rows': 1}}
+{"time": "2026-03-08 10:29:52,043", "level": "INFO", "module": "pipeline", "msg": "analytics_user_ltv: inserted 42000 rows"}
+{"time": "2026-03-08 10:29:52,045", "level": "INFO", "module": "db", "msg": "Transaction committed"}
+{"time": "2026-03-08 10:29:52,045", "level": "INFO", "module": "pipeline", "msg": {'job': 'analytics_user_ltv', 'duration_s': 1.603, 'rows': 1}}
+{"time": "2026-03-08 10:29:52,045", "level": "INFO", "module": "pipeline", "msg": "Pipeline complete. All jobs succeeded in 5.39s"}
+{"time": "2026-03-08 10:30:47,930", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
+{"time": "2026-03-08 10:30:47,943", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 10:31:00,004", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/metrics/health", "status": 200, "duration_ms": 2.5}
+{"time": "2026-03-08 10:31:00,019", "level": "ERROR", "module": "main", "msg": "DB error in /revenue/daily: column "date" does not exist
+LINE 3:         date AS revenue_date,
+                ^
+"}
+{"time": "2026-03-08 10:31:00,019", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/daily", "status": 503, "duration_ms": 2.7}
+{"time": "2026-03-08 10:31:00,033", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/category", "status": 200, "duration_ms": 5.1}
+{"time": "2026-03-08 10:31:00,043", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/users/top", "status": 200, "duration_ms": 2.4}
+{"time": "2026-03-08 10:32:13,820", "level": "INFO", "module": "main", "msg": "API shutting down."}
+{"time": "2026-03-08 10:32:14,112", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
+{"time": "2026-03-08 10:32:14,127", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 10:32:32,752", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/metrics/health", "status": 200, "duration_ms": 1.4}
+{"time": "2026-03-08 10:32:32,762", "level": "ERROR", "module": "main", "msg": "DB error in /revenue/daily: column "date" does not exist
+LINE 3:         date AS revenue_date,
+                ^
+"}
+{"time": "2026-03-08 10:32:32,763", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/daily", "status": 503, "duration_ms": 2.7}
+{"time": "2026-03-08 10:32:32,772", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/category", "status": 200, "duration_ms": 2.9}
+{"time": "2026-03-08 10:32:32,781", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/users/top", "status": 200, "duration_ms": 2.3}
+{"time": "2026-03-08 10:35:35,093", "level": "INFO", "module": "main", "msg": "API shutting down."}
+{"time": "2026-03-08 10:35:35,374", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
+{"time": "2026-03-08 10:35:35,388", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 10:35:48,534", "level": "INFO", "module": "main", "msg": "API shutting down."}
+{"time": "2026-03-08 10:35:48,798", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
+{"time": "2026-03-08 10:35:48,811", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-08 10:36:08,208", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/metrics/health", "status": 200, "duration_ms": 2.0}
+{"time": "2026-03-08 10:36:08,227", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/daily", "status": 200, "duration_ms": 6.7}
+{"time": "2026-03-08 10:36:08,259", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/category", "status": 200, "duration_ms": 1.7}
+{"time": "2026-03-08 10:36:08,270", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/users/top", "status": 200, "duration_ms": 1.8}

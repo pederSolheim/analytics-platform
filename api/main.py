@@ -16,6 +16,8 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request, HTTPException, Query
 from fastapi.responses import JSONResponse
 import psycopg2
+import monitor
+
 
 from db import fetch_all, get_pool, log
 from api.queries import (
@@ -73,8 +75,8 @@ async def unhandled_error(request: Request, exc: Exception):
 
 @app.get("/revenue/daily")
 def revenue_daily(
-    start: str = Query(None, description="Start date YYYY-MM-DD"),
-    end:   str = Query(None, description="End date YYYY-MM-DD"),
+    start: str = Query(None),
+    end:   str = Query(None),
 ):
     try:
         if start and end:
@@ -111,19 +113,16 @@ def users_top(limit: int = Query(10, ge=1, le=100, description="Number of users 
         raise HTTPException(status_code=503, detail="Database error")
 
 
+
 @app.get("/metrics/health")
-def metrics_health():
-    """
-    System health check.
-    Returns row counts and latest transaction date.
-    Returns 503 if DB is unreachable.
-    """
-    try:
-        rows = fetch_all(HEALTH_CHECK)
-        return {"status": "ok", "data": rows[0] if rows else {}}
-    except psycopg2.OperationalError as exc:
-        log.error(f'"Health check failed: {exc}"')
-        return JSONResponse(
-            status_code=503,
-            content={"status": "degraded", "error": "Database unreachable"},
-        )
+def health():
+    snap = monitor.get_snapshot()
+    return {
+        "status": "ok",
+        "pipeline_runs": snap["pipeline_runs"],
+        "total_rows_processed": snap["total_rows_processed"],
+        "total_errors": snap["total_errors"],
+        "last_run_at": snap["last_run_at"],
+        "last_run_duration_s": snap["last_run_duration_s"],
+        "recent_jobs": snap["job_history"][-5:],
+    }
