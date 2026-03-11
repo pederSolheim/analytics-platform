@@ -22,7 +22,7 @@ CREATE TABLE transactions (
 );
 
 CREATE TABLE daily_revenue (
-    date        DATE PRIMARY KEY,
+    revenue_date  DATE PRIMARY KEY,
     total_revenue NUMERIC(12, 2) NOT NULL,
     transaction_count INT NOT NULL
 );
