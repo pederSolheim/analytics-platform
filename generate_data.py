@@ -8,12 +8,13 @@ load_dotenv()
 fake = Faker()
 
 
-def insert_incremental(n: int, dsn: str = None) -> int:
+def insert_incremental(n: int) -> int:
     conn = psycopg2.connect(
         dbname=os.getenv("DB_NAME"),
         user=os.getenv("DB_USER"),
         host=os.getenv("DB_HOST")
     )
+
     cur = conn.cursor()
     cur.execute("SELECT user_id FROM users ORDER BY random() LIMIT 1000")
     user_ids = [r[0] for r in cur.fetchall()]
@@ -26,14 +27,14 @@ def insert_incremental(n: int, dsn: str = None) -> int:
         qty = random.randint(1, 5)
         amount = round(float(products[pid]) * qty, 2)
         cur.execute(
-            "INSERT INTO transactions (user_id, product_id, quantity, amount, created_at) VALUES (%s, %s, %s, %s, NOW())",
-            (random.choice(user_ids), pid, qty, amount)
+            "INSERT INTO transactions (user_id, product_id, quantity, amount, created_at) VALUES (%s, %s, %s, %s, %s)",
+            (random.choice(user_ids), pid, qty, amount, fake.date_time_between(start_date="-1y"))
         )
     conn.commit()
     conn.close()
     return n
 
-
+ 
 if __name__ == "__main__":
     conn = psycopg2.connect(
         dbname=os.getenv("DB_NAME"),
@@ -63,17 +64,19 @@ if __name__ == "__main__":
     print("Inserting transactions...")
     cur.execute("SELECT user_id FROM users")
     user_ids = [r[0] for r in cur.fetchall()]
-    cur.execute("SELECT product_id FROM products")
-    product_ids = [r[0] for r in cur.fetchall()]
+    cur.execute("SELECT product_id, price FROM products")
+    products = {r[0]: r[1] for r in cur.fetchall()}
+    product_ids = list(products.keys())
 
     for _ in range(5000000):
+        pid = random.choice(product_ids)
         qty = random.randint(1, 5)
-        cur.execute("SELECT price FROM products WHERE product_id = %s", (pid := random.choice(product_ids),))
-        price = cur.fetchone()[0]
+        amount = round(float(products[pid]) * qty, 2)
         cur.execute(
             "INSERT INTO transactions (user_id, product_id, quantity, amount, created_at) VALUES (%s, %s, %s, %s, %s)",
-            (random.choice(user_ids), pid, qty, round(float(price) * qty, 2), fake.date_time_between(start_date="-1y"))
+            (random.choice(user_ids), pid, qty, amount, fake.date_time_between(start_date="-1y"))
         )
+
     conn.commit()
     cur.close()
     conn.close()
