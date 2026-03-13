@@ -297,3 +297,20 @@ LINE 3:         date AS revenue_date,
 {"time": "2026-03-08 11:24:17,561", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
 {"time": "2026-03-08 11:24:17,574", "level": "INFO", "module": "db", "msg": "Connection pool created"}
 {"time": "2026-03-08 13:02:27,003", "level": "INFO", "module": "main", "msg": "API shutting down."}
+{"time": "2026-03-09 09:14:57,550", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
+{"time": "2026-03-09 09:14:57,639", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-09 17:02:56,107", "level": "INFO", "module": "main", "msg": "API shutting down."}
+{"time": "2026-03-11 13:20:45,183", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
+{"time": "2026-03-11 13:20:45,201", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-11 13:20:57,920", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/", "status": 404, "duration_ms": 0.6}
+{"time": "2026-03-11 13:20:58,104", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/favicon.ico", "status": 404, "duration_ms": 0.2}
+{"time": "2026-03-11 13:21:10,639", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/daily", "status": 200, "duration_ms": 13.4}
+{"time": "2026-03-11 13:22:14,604", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/docs", "status": 200, "duration_ms": 0.3}
+{"time": "2026-03-11 13:22:14,771", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/openapi.json", "status": 200, "duration_ms": 3.1}
+{"time": "2026-03-11 13:23:29,512", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/daily", "status": 200, "duration_ms": 7.2}
+{"time": "2026-03-11 13:24:06,454", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/revenue/daily", "status": 200, "duration_ms": 0.9}
+{"time": "2026-03-11 13:26:53,913", "level": "INFO", "module": "main", "msg": "method": "GET", "path": "/users/top", "status": 200, "duration_ms": 7.3}
+{"time": "2026-03-11 16:32:58,919", "level": "INFO", "module": "main", "msg": "API shutting down."}
+{"time": "2026-03-11 16:32:59,203", "level": "INFO", "module": "main", "msg": "API starting up. Initialising connection pool."}
+{"time": "2026-03-11 16:32:59,216", "level": "INFO", "module": "db", "msg": "Connection pool created"}
+{"time": "2026-03-12 08:27:09,618", "level": "INFO", "module": "main", "msg": "API shutting down."}

@@ -11,7 +11,7 @@ CREATE TABLE products (
     category    VARCHAR(50) NOT NULL,
     price       NUMERIC(10, 2) NOT NULL
 );
-
+PR
 CREATE TABLE transactions (
     transaction_id  SERIAL PRIMARY KEY,
     user_id         INT REFERENCES users(user_id),
