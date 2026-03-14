@@ -50,6 +50,8 @@ def job_daily_revenue(inject_failure: bool = False):
     Idempotent: DELETE then INSERT for affected dates.
     """
     with transaction() as cur:
+        cur.execute("SELECT pg_advisory_xact_lock(1)")
+
         # Step 1: find dates to refresh
         cur.execute("""
             SELECT DISTINCT DATE(created_at) AS d
@@ -88,6 +90,8 @@ def job_category_revenue(inject_failure: bool = False):
     Aggregate revenue per category per day into category_revenue table.
     """
     with transaction() as cur:
+        cur.execute("SELECT pg_advisory_xact_lock(1)")
+
         cur.execute("DELETE FROM analytics_category_revenue")
 
         if inject_failure:
@@ -118,6 +122,8 @@ def job_user_ltv(inject_failure: bool = False):
     Compute lifetime value per user. Upserts into analytics_user_ltv table.
     """
     with transaction() as cur:
+        cur.execute("SELECT pg_advisory_xact_lock(1)")
+
         cur.execute("DELETE FROM analytics_user_ltv;")
 
         if inject_failure:
