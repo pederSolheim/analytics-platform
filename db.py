@@ -44,17 +44,20 @@ DB_CONFIG = {
 _pool: psycopg2.pool.ThreadedConnectionPool | None = None
 
 
-def get_pool() -> psycopg2.pool.ThreadedConnectionPool:
-    global _pool
-    if _pool is None or _pool.closed:
-        _pool = psycopg2.pool.ThreadedConnectionPool(
-            minconn=1,
-            maxconn=10,
-            **DB_CONFIG,
-        )
-        log.info('"Connection pool created"')
-    return _pool
+import threading
+_pool_lock = threading.Lock()
 
+def get_pool():
+    global _pool
+    with _pool_lock:
+        if _pool is None or _pool.closed:
+            _pool = psycopg2.pool.ThreadedConnectionPool(
+                minconn=1,
+                maxconn=10,
+                **DB_CONFIG,
+            )
+            log.info('"Connection pool created"')
+    return _pool
 
 # ── Retry decorator ───────────────────────────────────────────────────────────
 def with_retry(max_attempts: int = 3, base_delay: float = 1.0, backoff: float = 2.0):
