@@ -44,7 +44,7 @@ if __name__ == "__main__":
     cur = conn.cursor()
 
     print("Inserting users...")
-    for _ in range(10000):
+    for _ in range(0):
         email = f"{fake.unique.email().split('@')[0]}_{random.randint(1000,9999)}@{fake.domain_name()}"
         cur.execute(
             "INSERT INTO users (name, email, created_at) VALUES (%s, %s, %s)",
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     print("Inserting products...")
     categories = ["Electronics", "Clothing", "Food", "Books", "Sports"]
-    for _ in range(100):
+    for _ in range(0):
         cur.execute(
             "INSERT INTO products (name, category, price) VALUES (%s, %s, %s)",
             (fake.word().capitalize(), random.choice(categories), round(random.uniform(5, 500), 2))
@@ -68,7 +68,7 @@ if __name__ == "__main__":
     products = {r[0]: r[1] for r in cur.fetchall()}
     product_ids = list(products.keys())
 
-    for _ in range(5000000):
+    for _ in range(10):
         pid = random.choice(product_ids)
         qty = random.randint(1, 5)
         amount = round(float(products[pid]) * qty, 2)
