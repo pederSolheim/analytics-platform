@@ -11,13 +11,13 @@ CREATE TABLE products (
     category    VARCHAR(50) NOT NULL,
     price       NUMERIC(10, 2) NOT NULL
 );
-PR
+
 CREATE TABLE transactions (
     transaction_id  SERIAL PRIMARY KEY,
     user_id         INT REFERENCES users(user_id),
     product_id      INT REFERENCES products(product_id),
     quantity        INT NOT NULL,
-    amount          NUMERIC(10, 2) NOT NULL,
+    amount          NUMERIC(10, 2) NOT NULL CHECK (amount > 0),
     created_at      TIMESTAMP DEFAULT NOW()
 );
 
@@ -44,3 +44,9 @@ CREATE TABLE IF NOT EXISTS analytics_user_ltv (
     last_purchase   TIMESTAMP,
     last_updated    TIMESTAMP DEFAULT NOW()
 );
+
+-- Indexes
+CREATE INDEX idx_transactions_created_at ON transactions(created_at);
+CREATE INDEX idx_transactions_product_id ON transactions(product_id);
+CREATE INDEX idx_transactions_product_amount ON transactions(product_id, amount);
+CREATE INDEX idx_user_ltv_total_spent ON analytics_user_ltv(total_spent DESC);
