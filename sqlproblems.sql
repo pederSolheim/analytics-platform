@@ -43,8 +43,17 @@ LIMIT 3;
 
 
 SELECT EXTRACT(MONTH FROM created_at) AS month, ROUND(SUM(amount)::numeric,2) AS total_revenue
-FROM transactions   
+FROM transactions  
+GROUP BY month  
 HAVING SUM(amount) > 1300000000
-GROUP BY month 
 ORDER BY AVG(amount) DESC;
 
+-- What is the total amount spent by each user, along with their name?
+
+SELECT u.user_id, u.name, SUM(t.amount) AS total_amount_spent 
+FROM users u
+LEFT JOIN transactions t
+ON u.user_id = t.user_id
+GROUP BY u.user_id
+ORDER BY SUM(t.amount) DESC
+LIMIT 10;
